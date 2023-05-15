@@ -36,8 +36,7 @@ foreign key(so_pn) references phieu_nhap(so_pn)
 
 create table don_dh(
 so_dh int  auto_increment primary key,
-ngay_dh int not null,
-foreign key(ma_ncc) references nha_cc(ma_ncc)
+ngay_dh int not null
 );
 
 create table chi_tiet_don_dat_hang(
@@ -48,8 +47,13 @@ foreign key(so_dh) references don_dh(so_dh)
 );
 
 create table nha_cc(
-ma_ncc varchar(10) not null,
+ma_ncc varchar(10) primary key,
 ten_ncc varchar(50) not null,
 address varchar(50) not null,
 sdt int not null
+);
+
+create table sdt(
+sdt int primary key,
+foreign key(sdt)references nha_cc(sdt)
 );

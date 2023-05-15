@@ -18,11 +18,8 @@ foreign key(cID) references customer(cID)
 create table product(
 pID int  auto_increment primary key,
 pName varchar(50) not null,
-pPrice float(50)not null
+pPrice int not null
 );
-
-ALTER TABLE product
-MODIFY COLUMN pPrice int;
 
 create table orderdetail(
 oID int not null  ,
