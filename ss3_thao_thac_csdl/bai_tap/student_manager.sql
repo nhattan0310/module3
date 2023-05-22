@@ -24,14 +24,17 @@ ClassID int not null
 
 INSERT INTO Student (Studentname, address, phone, `status`, ClassId)
 VALUES ('Hung', 'Ha Noi', '0912113113', 1, 1),
- ('Hoa', 'Hai phong', 1, 1),
+ ('Hoa', 'Hai phong',null, 1, 1),
  ('Manh', 'HCM', '0123123123', 0, 2);
+
+select * from student;
 
 create table `Subject`(
 SubID int auto_increment primary key,
 Subname varchar(10) not null,
 credit int not null,
 `status` varchar(10) not null
+-- foreign key(`status`) references student(`status`)
 );
 
 INSERT INTO `Subject`
@@ -39,6 +42,8 @@ VALUES (1, 'CF', 5, 1),
        (2, 'C', 6, 1),
        (3, 'HDJ', 5, 1),
        (4, 'RDBMS', 10, 1);
+
+select * from `Subject`;
 
 create table Mark(
 MarkID int auto_increment primary key,
@@ -53,6 +58,7 @@ VALUES (1, 1, 8, 1),
        (1, 2, 10, 2),
        (2, 1, 12, 1);
        
+select * from mark;
 
 -- ---------------------------------------------------
 
@@ -76,7 +82,13 @@ select * from Student;
 
 -- Hiển thị các thông tin: StudentName, SubName, Mark. Dữ liệu sắp xếp theo điểm thi (mark) giảm dần. nếu trùng sắp theo tên tăng dần.
 
-select  *
-from student join mark on student.StudentID = mark.StudentID;
+select  StudentName, SubName, Mark
+from student 
+inner join mark on student.StudentID = mark.StudentID
+inner join `subject` on mark.subID = `subject`.subID
+ORDER BY mark DESC,
+StudentName asc 
+;
+
 
 
